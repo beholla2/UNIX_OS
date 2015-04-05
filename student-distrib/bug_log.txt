@@ -1,0 +1,23 @@
+
+Note:
+	We had bugs every half hour or so but these were minor bugs and don't need to be mentioned. The bugs mentioned below are the bugs that took us more than an hour or two to fix and required lots of GDBing. 
+
+Checkpoint 1:
+	Bug 1 - We had trouble with IRET in our interrupt and common handler. This bug took about 2 hours to fix. All we had to do was pay closer attention to what we were pushing onto or stack before we call IRET.
+	
+	Bug 2 -  Paging caused us some problems too. Aligning was a bit tricky mostly because of the syntax. To fix this we referenced structs that were given in ‘x86_desc.h’. This bug took about 1 hour to fix. 
+
+Checkpoint 2:
+	Bug 3 - This checkpoint went fairly smoothly without notable bugs.
+
+Checkpoint 3: 
+	Bug 4 - Execute in syscalls.c cause a lot of problems due to the 6 steps we had to implement. Parsing the command that was passed in and extracting a file name, and arguments. We resolved this by counting the number of spacing and keeping track of their indices.  This bug took around 2-3 hours to fix. 
+	
+	Bug 5 -  The final step in execute in syscalls.c caused some more bugs when we were required to write inline assembly. We were having a problem setting interrupts before we IRET. This was fixed by the line:”  asm volatile("orl $0x286, %%eax" :::"eax");  “. This bug took us around 5-6 hours to fix. 
+	Bug 6 - 
+
+Checkpoint 4: 
+	Bug 7 - This checkpoint went pretty smoothly without huge bugs. 
+
+Checkpoint 5: 
+	Bug 8 - Scheduling has given us a lot of problems. When the system receives a PIT interrupt we are able to cycle through our process queue, updating the front and rear. However after 23 switches we get a page fault. We think this may be due to our program writing to the wrong kernel stack. This remains to be seen. Working on it now +10 hours.
